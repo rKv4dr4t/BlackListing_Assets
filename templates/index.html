@@ -15,6 +15,9 @@
         {% for order in orders %}
         {{ order }}
         {% endfor %}
+        {% if not orders  %}
+        NOTHING
+        {% endif %}
     </div>
 
 </body>
