@@ -19,6 +19,19 @@ def index():
     fee = 0.075
     #############################################
 
+    # Create stepSize.txt
+    exchangeInfo = client.get_exchange_info()
+    totalSymbols = exchangeInfo["symbols"]
+    txt_file = open("stepSize.txt", "r+")
+    txt_file.truncate(0)
+    for symbol in totalSymbols:
+        s0 = symbol
+        st = symbol["symbol"]
+        sz = symbol["filters"][2]["stepSize"]
+        tt = st + ": " + sz
+        txt_file.write(tt + "\n")
+    txt_file.close()
+
     # Detect owned balances
     def owned():
         #############################################
@@ -133,7 +146,7 @@ def index():
             else:
                 side = "SELL"
             try:
-                client.create_test_order(symbol=symbol, side=side,type="MARKET",quantity=quantity)
+                client.create_order(symbol=symbol, side=side,type="MARKET",quantity=quantity)
                 # print("\n" + str(symbol) + " ORDER DONE")
                 yield symbol
             except Exception as e:
@@ -142,7 +155,6 @@ def index():
                 yield symbol
     
     orders = list(orders())
-    print(orders)
 
     return render_template("index.html", orders = orders)
 
