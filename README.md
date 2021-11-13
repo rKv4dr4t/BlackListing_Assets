@@ -1,4 +1,4 @@
-# BlackListing_Crypto
+# BlackListing_Assets
 Put in white list every crypto that won't to automatically sell. Any other crypto isn't in white list, will sell it returning USDT
 
 ## Setup
