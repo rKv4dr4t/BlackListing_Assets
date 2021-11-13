@@ -15,7 +15,7 @@ starting_crypto = "USDT"
 
 def index():
     #############################################
-    white_list = ["EUR", "BNB", "ETH"]
+    white_list = ["ETH"]
     fee = 0.075
     #############################################
 
@@ -125,20 +125,26 @@ def index():
     raw_prices = list(raw_prices())
 
     # Send orders
-    for symbol, raw_price in zip(symbols, raw_prices):
-        quantity = truncate(raw_price - ((raw_price * fee) / 100), stepSizer(symbol))
-        if symbol.startswith(starting_crypto):
-            side = "BUY"
-        else:
-            side = "SELL"
-        try:
-            client.create_order(symbol=symbol, side=side,type="MARKET",quantity=quantity)
-            print("\n" + str(symbol) + " ORDER DONE")
-        except Exception as e:
-            flash(e.message, "error")
-            print("\n" + str(symbol) + " " + e.message)
+    def orders():
+        for symbol, raw_price in zip(symbols, raw_prices):
+            quantity = truncate(raw_price - ((raw_price * fee) / 100), stepSizer(symbol))
+            if symbol.startswith(starting_crypto):
+                side = "BUY"
+            else:
+                side = "SELL"
+            try:
+                client.create_test_order(symbol=symbol, side=side,type="MARKET",quantity=quantity)
+                # print("\n" + str(symbol) + " ORDER DONE")
+                yield symbol
+            except Exception as e:
+                flash(e.message, "error")
+                # print("\n" + str(symbol) + " " + e.message)
+                yield symbol
+    
+    orders = list(orders())
+    print(orders)
 
-    return render_template("index.html")
+    return render_template("index.html", orders = orders)
 
 if __name__ == '__main__':
   app.run(debug=True, host='127.0.0.1', port=80)
