@@ -1,5 +1,5 @@
 # BlackListing_Assets
-Put in white list every crypto that won't to automatically sell. Any other crypto isn't in white list, will sell it returning USDT
+Put in white list every crypto in your Binance account that won't to automatically sell. Any other crypto isn't in white list, will sell it returning USDT
 
 ## Setup
 - Install [Flask](https://flask.palletsprojects.com/en/2.0.x/)
