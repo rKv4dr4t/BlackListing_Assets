@@ -4,7 +4,7 @@ Put in white list every crypto in your Binance account that won't to automatical
 ## Setup
 - Install [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 - Generate API keys in Binance and put them in `config.py`
-- Change crypto to white listing and fee, in `app.py` (r. 18-19)
-- Change optionally value in USDT to overcome for black listing, in `app.py` (r. 26)
+- Change crypto to the white list in `app.py` (r. 18)
+- Change optionally fee and value in USDT to overcome for black listing, in `app.py` (r. 19-26)
 - Go to the current folder and run project: `python app.py`
 - Go to `127.0.0.1:80` in your browser
