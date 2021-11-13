@@ -1,4 +1,4 @@
-# BlackListing_Assets
+# BlackListing_Crypto
 Put in white list every crypto in your Binance account that won't to automatically sell. Any other crypto isn't in white list, will sell it returning USDT
 
 ## Setup
